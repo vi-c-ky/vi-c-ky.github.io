@@ -1,246 +1,704 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Victoria Paterson — AI Engineer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Victoria Paterson — AI for Healthcare & Drug Discovery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+    :root {
+      --bg: #05070a;
+      --surface: #0c0f15;
+      --surface-light: #141820;
+      --border: #1e2430;
+      --accent-primary: #6ee7b7;
+      --accent-secondary: #38bdf8;
+      --accent-glow: rgba(110, 231, 183, 0.15);
+      --text-primary: #edf2f8;
+      --text-secondary: #94a3b8;
+      --text-muted: #5b6b8c;
+      --font-sans: 'Inter', sans-serif;
+      --font-display: 'Syne', sans-serif;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+      --transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+    }
 
-<style>
-:root{
-  --bg:#050507;
-  --card:#0c0f14;
-  --border:#1a1f2a;
-  --accent:#c8f500;
-  --text:#eaeaea;
-  --muted:#7a7f88;
-}
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
 
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--surface);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--text-muted);
+      border-radius: 4px;
+    }
 
-.container{max-width:1200px;margin:auto;padding:2rem}
+    /* Container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
-/* NAV */
-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:4rem}
-nav a{color:var(--muted);text-decoration:none;margin-left:1.5rem;font-size:.85rem}
-nav a:hover{color:var(--text)}
+    /* Typography */
+    .display-lg {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .display-md {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .heading-sm {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+    }
+    .overline {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-.logo{font-family:'Bebas Neue';font-size:1.6rem;color:var(--accent)}
+    /* Navigation */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5, 7, 10, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    .nav-links a:hover {
+      color: var(--accent-primary);
+    }
+    .nav-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    .nav-btn:hover {
+      border-color: var(--accent-primary);
+      background: var(--accent-glow);
+    }
 
-/* HERO */
-.hero h1{
-  font-family:'Bebas Neue';
-  font-size:clamp(4rem,10vw,9rem);
-  line-height:.9;
-}
+    /* Hero section */
+    .hero {
+      padding: 5rem 0 4rem;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.4rem 1rem;
+      margin-bottom: 2rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-primary);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.9); }
+    }
+    .hero-title {
+      margin-bottom: 1.5rem;
+    }
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--accent-primary);
+      color: var(--bg);
+      padding: 0.8rem 2rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+    .btn-outline {
+      border: 1px solid var(--border);
+      background: transparent;
+      padding: 0.8rem 2rem;
+      border-radius: 100px;
+      font-weight: 500;
+      font-size: 0.85rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+    }
 
-.hero p{
-  margin-top:1.5rem;
-  max-width:600px;
-  color:var(--muted);
-  line-height:1.7;
-}
+    /* Section headers */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+    }
 
-.badges{margin-top:1rem}
-.badge{
-  display:inline-block;
-  border:1px solid var(--border);
-  padding:.3rem .6rem;
-  margin:.2rem;
-  font-size:.7rem;
-  color:var(--muted);
-}
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.75rem;
+      transition: var(--transition);
+      text-decoration: none;
+      display: block;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-primary);
+      background: var(--surface-light);
+    }
+    .project-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+    .tech-tag {
+      font-size: 0.65rem;
+      padding: 0.2rem 0.7rem;
+      background: var(--bg);
+      border-radius: 100px;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    .project-stats {
+      font-size: 0.75rem;
+      color: var(--accent-primary);
+      font-family: monospace;
+      margin-top: 0.75rem;
+    }
+    .featured-badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      background: var(--accent-glow);
+      color: var(--accent-primary);
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      margin-bottom: 0.75rem;
+    }
 
-/* BUTTON */
-.btn{
-  display:inline-block;
-  margin-top:2rem;
-  padding:.8rem 1.5rem;
-  background:var(--accent);
-  color:#000;
-  text-decoration:none;
-  font-size:.75rem;
-}
+    /* Experience timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-date {
+      font-size: 0.8rem;
+      color: var(--accent-primary);
+      font-weight: 500;
+    }
+    .exp-org {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+    .exp-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .exp-desc {
+      list-style: none;
+    }
+    .exp-desc li {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .exp-desc li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent-primary);
+      font-size: 0.7rem;
+    }
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
 
-/* SECTION */
-.section{margin-top:6rem}
-.section h2{
-  font-family:'Bebas Neue';
-  font-size:3rem;
-  margin-bottom:2rem;
-}
+    /* Skills section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .skill-category {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem;
+    }
+    .skill-cat-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-primary);
+      margin-bottom: 1rem;
+    }
+    .skill-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-item {
+      font-size: 0.75rem;
+      background: var(--bg);
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      color: var(--text-secondary);
+    }
 
-/* PROJECTS */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:1.5rem;
-}
+    /* About strip */
+    .about-strip {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 3rem;
+      margin: 3rem 0;
+      border: 1px solid var(--border);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .about-highlight {
+      font-size: 1.8rem;
+      font-weight: 700;
+      font-family: var(--font-display);
+      line-height: 1.2;
+    }
+    .about-text {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .about-text p {
+      margin-bottom: 1rem;
+    }
 
-.card{
-  background:var(--card);
-  padding:1.5rem;
-  border:1px solid var(--border);
-  transition:.3s;
-}
+    /* Contact */
+    .contact-section {
+      text-align: center;
+      padding: 4rem 0;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    .contact-email {
+      font-size: 1.25rem;
+      color: var(--accent-primary);
+      text-decoration: none;
+      border-bottom: 1px dashed var(--accent-primary);
+      transition: var(--transition);
+    }
+    .contact-email:hover {
+      color: var(--accent-secondary);
+      border-bottom-color: var(--accent-secondary);
+    }
+    footer {
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
 
-.card:hover{
-  transform:translateY(-5px);
-  border-color:var(--accent);
-}
+    @media (max-width: 768px) {
+      .container { padding: 0 1.25rem; }
+      .nav-inner { padding: 1rem 1.25rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .hero { padding: 3rem 0; }
+      .btn-group { flex-direction: column; align-items: flex-start; }
+    }
 
-.card h3{
-  font-size:1.4rem;
-  margin-bottom:.8rem;
-}
-
-.card p{
-  font-size:.85rem;
-  color:var(--muted);
-  line-height:1.6;
-}
-
-.metrics{
-  margin-top:1rem;
-  font-size:.75rem;
-  color:var(--accent);
-}
-
-.links a{
-  display:inline-block;
-  margin-right:1rem;
-  margin-top:1rem;
-  font-size:.75rem;
-  color:var(--muted);
-}
-
-.links a:hover{color:var(--accent)}
-
-/* EXPERIENCE */
-.exp{
-  border-top:1px solid var(--border);
-  padding:1.5rem 0;
-}
-
-.exp h3{margin-bottom:.5rem}
-.exp p{font-size:.85rem;color:var(--muted)}
-
-/* FOOTER */
-footer{
-  margin-top:6rem;
-  padding-top:2rem;
-  border-top:1px solid var(--border);
-  font-size:.7rem;
-  color:var(--muted);
-}
-
-</style>
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
-
 <body>
-<div class="container">
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">VP</a>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="https://github.com/vi-c-ky" target="_blank" class="nav-btn">GitHub</a>
+      </div>
+    </div>
+  </nav>
 
-<nav>
-  <div class="logo">VP</div>
-  <div>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+  <main>
+    <div class="container">
+      <!-- Hero Section -->
+      <section class="hero reveal">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span>Computational Drug Discovery · Healthcare AI</span>
+        </div>
+        <h1 class="display-lg hero-title">
+          Victoria <span class="text-gradient">Paterson</span>
+        </h1>
+        <p class="hero-subtitle">
+          Third-year CS & AI @ University of Edinburgh. Building AI for early drug development — 
+          QSAR adverse effect prediction, ODE tumour resistance simulation, and generative molecular design. 
+          DAAD RISE scholar with publication pending.
+        </p>
+        <div class="hero-stats">
+          <div class="stat"><span class="stat-value">DAAD RISE</span><span class="stat-label">Scholar 2025</span></div>
+          <div class="stat"><span class="stat-value">ChEMBL+SIDER</span><span class="stat-label">Drug Safety</span></div>
+          <div class="stat"><span class="stat-value">Publication</span><span class="stat-label">Under Review</span></div>
+        </div>
+        <div class="btn-group" style="margin-top: 2rem;">
+          <a href="#projects" class="btn-primary">View Projects →</a>
+          <a href="https://github.com/vi-c-ky" target="_blank" class="btn-outline">GitHub</a>
+        </div>
+      </section>
 
-<section class="hero">
-  <h1>Victoria<br>Paterson</h1>
-  <p>
-    Building real-world AI systems — from multimodal deepfake detection to geospatial LLM pipelines.
-  </p>
+      <!-- Projects Section -->
+      <section id="projects" style="margin: 4rem 0;">
+        <div class="section-header reveal">
+          <h2 class="section-title">Research & Engineering</h2>
+          <span class="overline">Full pipeline: prediction → simulation → generation</span>
+        </div>
 
-  <div class="badges">
-    <span class="badge">NLP</span>
-    <span class="badge">Computer Vision</span>
-    <span class="badge">GeoAI</span>
-  </div>
+        <div class="projects-grid">
+          <!-- QSAR Project -->
+          <div class="project-card reveal">
+            <span class="featured-badge">✦ Published-style project</span>
+            <div class="project-icon">🧬</div>
+            <h3 class="project-title">QSAR Drug Side Effect Predictor</h3>
+            <p class="project-desc">Multi-label adverse effect prediction system for early drug safety screening. Trained on ChEMBL + SIDER (15 AE labels) with Morgan fingerprints and RDKit descriptors. Atom-level SHAP interpretability.</p>
+            <div class="project-tech">
+              <span class="tech-tag">PyTorch</span>
+              <span class="tech-tag">RDKit</span>
+              <span class="tech-tag">SHAP</span>
+              <span class="tech-tag">scikit-learn</span>
+              <span class="tech-tag">Flask</span>
+            </div>
+            <div class="project-stats">Multi-label classification · Weighted loss · Flask + vanilla JS frontend</div>
+          </div>
 
-  <a class="btn" href="#projects">View Work</a>
-</section>
+          <!-- TumorEvo -->
+          <div class="project-card reveal">
+            <div class="project-icon">📈</div>
+            <h3 class="project-title">TumorEvo: Resistance Dynamics</h3>
+            <p class="project-desc">Four-compartment ODE model (sensitive, resistant A/B, dual-resistant) simulating acquired resistance. RK4 numerical integration with clinical dosing schedules: continuous, pulsed, metronomic, escalating.</p>
+            <div class="project-tech">
+              <span class="tech-tag">NumPy</span>
+              <span class="tech-tag">SciPy</span>
+              <span class="tech-tag">Flask</span>
+              <span class="tech-tag">Chart.js</span>
+            </div>
+            <div class="project-stats">RK4 · Real-time flux analysis · Interactive parameter controls</div>
+          </div>
 
-<section class="section" id="projects">
-  <h2>Projects</h2>
+          <!-- Conditional VAE -->
+          <div class="project-card reveal">
+            <div class="project-icon">⚛️</div>
+            <h3 class="project-title">Conditional VAE for Molecular Generation</h3>
+            <p class="project-desc">Inverse molecular design conditioned on SIDER side effect profiles. Extends QSAR predictor into generative direction — closed-loop property prediction + design.</p>
+            <div class="project-tech">
+              <span class="tech-tag">PyTorch</span>
+              <span class="tech-tag">RDKit</span>
+              <span class="tech-tag">VAE</span>
+              <span class="tech-tag">ChEMBL</span>
+            </div>
+            <div class="project-stats">In progress · Conditional generation · SMILES space</div>
+          </div>
 
-  <div class="grid">
+          <!-- Deepfake Detector -->
+          <div class="project-card reveal">
+            <div class="project-icon">🎭</div>
+            <h3 class="project-title">Deepfake Political Speech Detector</h3>
+            <p class="project-desc">Multimodal AI: XceptionNet/EfficientNet (visual) + Wav2Vec2 (audio) with late fusion meta-learner. Targets 96-98% combined accuracy.</p>
+            <div class="project-tech">
+              <span class="tech-tag">PyTorch</span>
+              <span class="tech-tag">Wav2Vec2</span>
+              <span class="tech-tag">XceptionNet</span>
+              <span class="tech-tag">OpenCV</span>
+            </div>
+            <div class="project-stats">89-98% visual · 93-98% audio · Fusion meta-learner</div>
+          </div>
 
-    <div class="card">
-      <h3>Deepfake Detector</h3>
-      <p>
-        Multimodal pipeline combining CNN-based visual detection and Wav2Vec2 audio models.
-      </p>
-      <div class="metrics">96–98% accuracy · &lt;120ms inference</div>
-      <div class="links">
-        <a href="#">GitHub ↗</a>
-        <a href="#">Demo ↗</a>
+          <!-- ASL & Hate Comment -->
+          <div class="project-card reveal">
+            <div class="project-icon">🤟</div>
+            <h3 class="project-title">ASL Gesture Recognition</h3>
+            <p class="project-desc">Web-based sign language interpreter: Random Forest (static) + LSTM (dynamic) with MediaPipe 21-point landmarks. WebSocket streaming for real-time inference.</p>
+            <div class="project-tech">
+              <span class="tech-tag">MediaPipe</span>
+              <span class="tech-tag">LSTM</span>
+              <span class="tech-tag">WebSockets</span>
+              <span class="tech-tag">Flask</span>
+            </div>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-icon">🛡️</div>
+            <h3 class="project-title">Instagram Hate Comment Detector</h3>
+            <p class="project-desc">Real-time toxic comment detection + Chrome extension for automatic blurring. 92% precision.</p>
+            <div class="project-tech">
+              <span class="tech-tag">TensorFlow</span>
+              <span class="tech-tag">Chrome Extensions API</span>
+              <span class="tech-tag">JavaScript</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience" style="margin: 4rem 0;">
+        <div class="section-header reveal">
+          <h2 class="section-title">Experience</h2>
+          <span class="overline">Industry & Research</span>
+        </div>
+        <div class="timeline">
+          <div class="exp-item reveal">
+            <div><div class="exp-date">Summer 2025</div><div class="exp-org">RWTH Aachen University · DAAD RISE</div></div>
+            <div><h3 class="exp-title">AI Research Intern</h3><ul class="exp-desc"><li>Built AI-powered chatbot to parse complex international hydrogen policy documents</li><li>Developed algorithms to quantify inter-country policy coherence with visualization suite</li><li>Research findings currently under review for academic publication</li></ul><div class="exp-tags"><span class="tech-tag">NLP</span><span class="tech-tag">Transformers</span><span class="tech-tag">Policy Analysis</span></div></div>
+          </div>
+          <div class="exp-item reveal">
+            <div><div class="exp-date">2026</div><div class="exp-org">EDINA · UK National Mapping Service</div></div>
+            <div><h3 class="exp-title">AI Software Engineering Intern</h3><ul class="exp-desc"><li>LLM-powered conversational interface with semantic search over structured metadata</li><li>Built interactive data visualization dashboards and production web features</li><li>Developed Python automation for batch processing large-scale geospatial datasets</li></ul><div class="exp-tags"><span class="tech-tag">LLM</span><span class="tech-tag">Embeddings</span><span class="tech-tag">Flask</span><span class="tech-tag">React</span></div></div>
+          </div>
+          <div class="exp-item reveal">
+            <div><div class="exp-date">Present</div><div class="exp-org">University of Edinburgh</div></div>
+            <div><h3 class="exp-title">Lab Demonstrator (CV & NLP)</h3><ul class="exp-desc"><li>Lead weekly labs for Cognitive Science — computer vision (Hopfield networks, vision systems) and NLP</li><li>Guide students through neural network implementations; consistently receive excellent feedback</li></ul><div class="exp-tags"><span class="tech-tag">Teaching</span><span class="tech-tag">Computer Vision</span><span class="tech-tag">NLP</span></div></div>
+          </div>
+          <div class="exp-item reveal">
+            <div><div class="exp-date">2024–Present</div><div class="exp-org">Scottish Policy Forum · Labour Party</div></div>
+            <div><h3 class="exp-title">Technology Policy Advisor</h3><ul class="exp-desc"><li>Bring technical AI perspective to policy discussions; collaborate with senior policymakers to draft position papers on AI and technology innovation</li></ul><div class="exp-tags"><span class="tech-tag">Policy</span><span class="tech-tag">AI Governance</span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills" style="margin: 4rem 0;">
+        <div class="section-header reveal">
+          <h2 class="section-title">Technical Expertise</h2>
+          <span class="overline">Healthcare AI · Full Stack</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category"><div class="skill-cat-title">Cheminformatics & BioAI</div><div class="skill-items"><span class="skill-item">RDKit</span><span class="skill-item">Morgan Fingerprints</span><span class="skill-item">QSAR</span><span class="skill-item">ChEMBL/SIDER</span><span class="skill-item">ODE Modelling</span><span class="skill-item">SHAP</span></div></div>
+          <div class="skill-category"><div class="skill-cat-title">Deep Learning</div><div class="skill-items"><span class="skill-item">PyTorch</span><span class="skill-item">TensorFlow</span><span class="skill-item">Transformers</span><span class="skill-item">VAEs</span><span class="skill-item">CNNs/LSTMs</span></div></div>
+          <div class="skill-category"><div class="skill-cat-title">NLP & CV</div><div class="skill-items"><span class="skill-item">Wav2Vec2</span><span class="skill-item">spaCy/NLTK</span><span class="skill-item">OpenCV</span><span class="skill-item">MediaPipe</span><span class="skill-item">XceptionNet</span><span class="skill-item">EfficientNet</span></div></div>
+          <div class="skill-category"><div class="skill-cat-title">Full Stack & DevOps</div><div class="skill-items"><span class="skill-item">Flask/Node.js</span><span class="skill-item">React</span><span class="skill-item">MongoDB/PostgreSQL</span><span class="skill-item">Docker</span><span class="skill-item">AWS</span><span class="skill-item">WebSockets</span></div></div>
+          <div class="skill-category"><div class="skill-cat-title">Languages</div><div class="skill-items"><span class="skill-item">Python</span><span class="skill-item">JavaScript</span><span class="skill-item">Java</span><span class="skill-item">TypeScript</span><span class="skill-item">C#</span><span class="skill-item">Haskell</span></div></div>
+          <div class="skill-category"><div class="skill-cat-title">Biomedical Curriculum</div><div class="skill-items"><span class="skill-item">Biological APIs</span><span class="skill-item">Sequence Analysis</span><span class="skill-item">Multi-omics</span><span class="skill-item">Network Analysis</span><span class="skill-item">Biomedical NLP</span></div></div>
+        </div>
+      </section>
+
+      <!-- About Strip -->
+      <div id="about" class="about-strip reveal">
+        <div class="about-grid">
+          <div class="about-highlight">Building AI that <span class="text-gradient">accelerates evidence generation</span> and improves health outcomes</div>
+          <div class="about-text">
+            <p>I'm a third-year CS & AI student at the <strong>University of Edinburgh</strong> with a specialized portfolio in <strong>healthcare AI and computational drug discovery</strong>. My projects span the full early drug development pipeline: from QSAR adverse effect prediction and ODE-based tumour resistance simulation to conditional VAE for inverse molecular design.</p>
+            <p>I complement this with self-directed biomedical informatics (biological APIs, multi-omics, biomedical NLP) and production software engineering experience. DAAD RISE scholar at RWTH Aachen (publication pending).</p>
+            <p>I speak English, Norwegian, and German. Looking for Summer 2026 opportunities in <strong>AI/ML for healthcare, drug discovery, or biomedical AI research</strong>.</p>
+            <div style="margin-top: 1rem;"><a href="#contact" class="btn-primary" style="background: var(--accent-secondary);">Get in touch →</a></div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="card">
-      <h3>Sign Language Interpreter</h3>
-      <p>
-        Real-time ASL recognition using MediaPipe and LSTM models for dynamic gestures.
-      </p>
-      <div class="metrics">Real-time · Browser-based</div>
-      <div class="links">
-        <a href="#">GitHub ↗</a>
-        <a href="#">Demo ↗</a>
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <span class="overline">Connect</span>
+        <h2 style="font-family: var(--font-display); font-size: 2rem; margin: 1rem 0;">Let's accelerate discovery together</h2>
+        <a href="mailto:victoriaflora2005@gmail.com" class="contact-email">victoriaflora2005@gmail.com</a>
+        <div style="margin-top: 1rem;"><a href="https://github.com/vi-c-ky" target="_blank" style="color: var(--text-muted); text-decoration: none;">github.com/vi-c-ky</a></div>
       </div>
-    </div>
+    </section>
 
-    <div class="card">
-      <h3>Hydrogen Policy AI</h3>
-      <p>
-        NLP system analysing international energy policy and measuring cross-country alignment.
-      </p>
-      <div class="metrics">Research under review</div>
-      <div class="links">
-        <a href="#">GitHub ↗</a>
-      </div>
-    </div>
+    <footer>
+      <div class="container">© 2025 Victoria Paterson · CS & AI, University of Edinburgh</div>
+    </footer>
+  </main>
 
-  </div>
-</section>
-
-<section class="section" id="experience">
-  <h2>Experience</h2>
-
-  <div class="exp">
-    <h3>AI Intern — EDINA</h3>
-    <p>
-      Built LLM-powered geospatial search over national datasets and interactive mapping tools.
-    </p>
-  </div>
-
-  <div class="exp">
-    <h3>AI Research Intern — RWTH Aachen</h3>
-    <p>
-      Developed NLP systems for international hydrogen policy analysis.
-    </p>
-  </div>
-
-</section>
-
-<section class="section" id="contact">
-  <h2>Contact</h2>
-  <p style="color:var(--muted)">victoriaflora2005@gmail.com</p>
-</section>
-
-<footer>
-  © 2026 Victoria Paterson
-</footer>
-
-</div>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
