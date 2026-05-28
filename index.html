@@ -3,475 +3,522 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Victoria Paterson — AI for Healthcare & Drug Discovery</title>
+  <title>Victoria Paterson — CS & AI | Healthcare AI · Drug Discovery</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --bg: #07080b;
+      --surface: #0d0f14;
+      --border: #1c1f28;
+      --accent: #c8f500;
+      --text: #f8f7f1;
+      --muted: #d5d5d6;
+      --display: 'Bebas Neue', sans-serif;
+      --body: 'Fira Code', monospace;
     }
 
-    :root {
-      --bg: #05070a;
-      --surface: #0c0f15;
-      --surface-light: #141820;
-      --border: #1e2430;
-      --accent-primary: #6ee7b7;
-      --accent-secondary: #38bdf8;
-      --accent-glow: rgba(110, 231, 183, 0.15);
-      --text-primary: #edf2f8;
-      --text-secondary: #94a3b8;
-      --text-muted: #5b6b8c;
-      --font-sans: 'Inter', sans-serif;
-      --font-display: 'Syne', sans-serif;
-      --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
-      --transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      background-color: var(--bg);
-      color: var(--text-primary);
-      font-family: var(--font-sans);
-      line-height: 1.5;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--surface);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--text-muted);
-      border-radius: 4px;
-    }
-
-    /* Container */
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* Typography */
-    .display-lg {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-    }
-    .display-md {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-    .heading-sm {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 600;
-      letter-spacing: -0.2px;
-    }
-    .overline {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent-primary);
-      font-weight: 600;
-    }
-    .text-gradient {
-      background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    /* Navigation */
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(5, 7, 10, 0.85);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
+    nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.25rem 2rem;
+      padding: 1.75rem 4rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(7, 8, 11, 0.9);
+      backdrop-filter: blur(16px);
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: var(--display);
+      font-size: 1.6rem;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      padding: 9rem 4rem 7rem;
       max-width: 1400px;
       margin: 0 auto;
     }
-    .logo {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--accent-primary);
-      text-decoration: none;
-    }
-    .nav-links {
+
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
       display: flex;
-      gap: 2rem;
       align-items: center;
-    }
-    .nav-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      transition: var(--transition);
-    }
-    .nav-links a:hover {
-      color: var(--accent-primary);
-    }
-    .nav-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      padding: 0.5rem 1.2rem;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      transition: var(--transition);
-    }
-    .nav-btn:hover {
-      border-color: var(--accent-primary);
-      background: var(--accent-glow);
+      gap: 1rem;
+      animation: fadeUp 0.6s ease both;
     }
 
-    /* Hero section */
-    .hero {
-      padding: 5rem 0 4rem;
+    .hero-eyebrow::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
     }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
+
+    .hero-name {
+      font-family: var(--display);
+      font-size: clamp(5.5rem, 15vw, 15rem);
+      line-height: 0.88;
+      letter-spacing: 0.01em;
+      margin-bottom: 3.5rem;
+      animation: fadeUp 0.6s 0.08s ease both;
+    }
+
+    .hero-name .line1 { display: block; }
+    .hero-name .line2 {
+      display: block;
+      -webkit-text-stroke: 1.5px var(--text);
+      color: transparent;
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 3rem;
+      animation: fadeUp 0.6s 0.16s ease both;
+    }
+
+    .hero-desc {
+      max-width: 560px;
+      font-size: 0.8rem;
+      line-height: 2;
+      color: var(--muted);
+    }
+
+    .hero-pills {
+      display: flex;
       gap: 0.5rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 0.4rem 1rem;
-      margin-bottom: 2rem;
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-    }
-    .hero-badge-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--accent-primary);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.9); }
-    }
-    .hero-title {
-      margin-bottom: 1.5rem;
-    }
-    .hero-subtitle {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
-    .hero-stats {
-      display: flex;
       flex-wrap: wrap;
-      gap: 2rem;
-      margin-top: 2rem;
+      margin-top: 1.2rem;
     }
-    .stat {
-      display: flex;
-      flex-direction: column;
-    }
-    .stat-value {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--accent-primary);
-    }
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
+
+    .hero-pill {
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
     }
-    .btn-group {
+
+    .hero-actions {
       display: flex;
       gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .btn-primary {
-      background: var(--accent-primary);
-      color: var(--bg);
-      padding: 0.8rem 2rem;
-      border-radius: 100px;
-      font-weight: 600;
-      font-size: 0.85rem;
-      text-decoration: none;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.05);
-    }
-    .btn-outline {
-      border: 1px solid var(--border);
-      background: transparent;
-      padding: 0.8rem 2rem;
-      border-radius: 100px;
-      font-weight: 500;
-      font-size: 0.85rem;
-      text-decoration: none;
-      color: var(--text-primary);
-      transition: var(--transition);
-    }
-    .btn-outline:hover {
-      border-color: var(--accent-primary);
-      color: var(--accent-primary);
+      flex-shrink: 0;
     }
 
-    /* Section headers */
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+      padding: 1rem 2.5rem;
+      font-family: var(--body);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+
+    .btn-ghost {
+      color: var(--text);
+      padding: 1rem 2.5rem;
+      font-family: var(--body);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover { border-color: var(--text); }
+
+    .section {
+      padding: 0 4rem 6rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
     .section-header {
       display: flex;
-      justify-content: space-between;
       align-items: baseline;
-      flex-wrap: wrap;
-      margin-bottom: 3rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      font-weight: 700;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 2.5rem;
+      margin-bottom: 4rem;
     }
 
-    /* Projects Grid */
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      letter-spacing: 0.03em;
+    }
+
+    .section-meta {
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
     }
+
     .project-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 1.75rem;
-      transition: var(--transition);
+      background: var(--bg);
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.35s;
       text-decoration: none;
+      color: inherit;
       display: block;
     }
-    .project-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent-primary);
-      background: var(--surface-light);
+
+    .project-card:hover { background: var(--surface); }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .project-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+
+    .project-card:hover::after { width: 100%; }
+
+    .project-card.featured {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
     }
-    .project-title {
-      font-family: var(--font-display);
-      font-size: 1.35rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      color: var(--text-primary);
+
+    .project-number {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2.5rem;
     }
+
+    .project-name {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+    }
+
     .project-desc {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      margin-bottom: 1rem;
-      line-height: 1.5;
+      font-size: 0.76rem;
+      line-height: 2;
+      color: var(--muted);
+      margin-bottom: 2rem;
     }
-    .project-tech {
+
+    .project-stat {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      margin-top: 0.5rem;
+    }
+
+    .project-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin: 1rem 0;
-    }
-    .tech-tag {
-      font-size: 0.65rem;
-      padding: 0.2rem 0.7rem;
-      background: var(--bg);
-      border-radius: 100px;
-      color: var(--text-muted);
-      border: 1px solid var(--border);
-    }
-    .project-stats {
-      font-size: 0.75rem;
-      color: var(--accent-primary);
-      font-family: monospace;
-      margin-top: 0.75rem;
-    }
-    .featured-badge {
-      display: inline-block;
-      font-size: 0.6rem;
-      background: var(--accent-glow);
-      color: var(--accent-primary);
-      padding: 0.2rem 0.6rem;
-      border-radius: 100px;
-      margin-bottom: 0.75rem;
+      margin-bottom: 2rem;
     }
 
-    /* Experience timeline */
-    .timeline {
+    .tag {
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .project-links { display: flex; gap: 2rem; }
+
+    .project-link {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .project-link:hover { color: var(--accent); }
+    .project-link .arrow { display: inline-block; transition: transform 0.2s; }
+    .project-link:hover .arrow { transform: translate(2px, -2px); }
+
+    .about-strip {
+      padding: 6rem 4rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .about-heading {
+      font-family: var(--display);
+      font-size: clamp(3rem, 5vw, 5rem);
+      line-height: 0.95;
+    }
+
+    .about-heading .outline {
+      -webkit-text-stroke: 1px var(--text);
+      color: transparent;
+    }
+
+    .about-body {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      justify-content: center;
+      gap: 1.5rem;
     }
-    .exp-item {
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 2rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .exp-date {
+
+    .about-body p {
       font-size: 0.8rem;
-      color: var(--accent-primary);
-      font-weight: 500;
+      line-height: 2;
+      color: var(--muted);
     }
-    .exp-org {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-top: 0.25rem;
+
+    .about-body p strong { color: var(--text); font-weight: 500; }
+
+    .experience-list { display: flex; flex-direction: column; }
+
+    .exp-row {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      align-items: start;
     }
+
+    .exp-row:last-child { border-bottom: 1px solid var(--border); }
+
+    .exp-date {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .exp-company {
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
     .exp-title {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin-bottom: 1.2rem;
     }
-    .exp-desc {
+
+    .exp-bullets {
       list-style: none;
+      margin-bottom: 1.5rem;
     }
-    .exp-desc li {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.5rem;
-      padding-left: 1rem;
+
+    .exp-bullets li {
+      font-size: 0.74rem;
+      line-height: 1.9;
+      color: var(--muted);
+      padding-left: 1.4rem;
       position: relative;
+      max-width: 640px;
     }
-    .exp-desc li::before {
-      content: "▹";
+
+    .exp-bullets li::before {
+      content: '—';
       position: absolute;
       left: 0;
-      color: var(--accent-primary);
-      font-size: 0.7rem;
+      color: var(--accent);
+      font-size: 0.6rem;
+      top: 0.38rem;
     }
+
+    .exp-bullets li strong { color: var(--text); font-weight: 500; }
+
     .exp-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-top: 1rem;
     }
 
-    /* Skills section */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1px;
+      background: var(--border);
     }
-    .skill-category {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.25rem;
-    }
-    .skill-cat-title {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent-primary);
-      margin-bottom: 1rem;
-    }
-    .skill-items {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
+
     .skill-item {
-      font-size: 0.75rem;
       background: var(--bg);
-      padding: 0.25rem 0.75rem;
-      border-radius: 100px;
-      color: var(--text-secondary);
+      padding: 1.5rem 1.75rem;
+      transition: background 0.2s;
+      cursor: default;
     }
 
-    /* About strip */
-    .about-strip {
-      background: var(--surface);
-      border-radius: 24px;
-      padding: 3rem;
-      margin: 3rem 0;
-      border: 1px solid var(--border);
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-    .about-highlight {
-      font-size: 1.8rem;
-      font-weight: 700;
-      font-family: var(--font-display);
-      line-height: 1.2;
-    }
-    .about-text {
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-    .about-text p {
-      margin-bottom: 1rem;
+    .skill-item:hover { background: var(--surface); }
+
+    .skill-cat {
+      display: block;
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
     }
 
-    /* Contact */
-    .contact-section {
-      text-align: center;
-      padding: 4rem 0;
-      border-top: 1px solid var(--border);
-      margin-top: 2rem;
-    }
-    .contact-email {
-      font-size: 1.25rem;
-      color: var(--accent-primary);
-      text-decoration: none;
-      border-bottom: 1px dashed var(--accent-primary);
-      transition: var(--transition);
-    }
-    .contact-email:hover {
-      color: var(--accent-secondary);
-      border-bottom-color: var(--accent-secondary);
-    }
-    footer {
-      padding: 2rem 0;
-      text-align: center;
-      color: var(--text-muted);
+    .skill-name {
       font-size: 0.75rem;
-      border-top: 1px solid var(--border);
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      transition: color 0.2s;
     }
 
-    @media (max-width: 768px) {
-      .container { padding: 0 1.25rem; }
-      .nav-inner { padding: 1rem 1.25rem; }
-      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .hero { padding: 3rem 0; }
-      .btn-group { flex-direction: column; align-items: flex-start; }
+    .skill-item:hover .skill-name { color: var(--text); }
+
+    .contact {
+      padding: 10rem 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .contact-eyebrow::before, .contact-eyebrow::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .contact-heading {
+      font-family: var(--display);
+      font-size: clamp(4rem, 10vw, 11rem);
+      line-height: 0.9;
+      margin-bottom: 4rem;
+    }
+
+    .contact-heading .outline {
+      -webkit-text-stroke: 1.5px var(--text);
+      color: transparent;
+    }
+
+    .contact-email {
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.3rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .contact-email:hover { color: var(--accent); border-color: var(--accent); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+    .footer-links { display: flex; gap: 2rem; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .reveal {
@@ -479,226 +526,341 @@
       transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      nav, .hero, .section, .about-strip, .contact { padding-left: 1.75rem; padding-right: 1.75rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; gap: 0; }
+      .about-strip { grid-template-columns: 1fr; gap: 3rem; }
+      .exp-row { grid-template-columns: 1fr; gap: 1rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
     }
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="logo">VP</a>
-      <div class="nav-links">
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#about">About</a>
-        <a href="https://github.com/vi-c-ky" target="_blank" class="nav-btn">GitHub</a>
-      </div>
-    </div>
+
+  <nav>
+    <div class="nav-logo">VP</div>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://github.com/vi-c-ky" target="_blank" rel="noopener">GitHub ↗</a></li>
+    </ul>
   </nav>
 
-  <main>
-    <div class="container">
-      <!-- Hero Section -->
-      <section class="hero reveal">
-        <div class="hero-badge">
-          <span class="hero-badge-dot"></span>
-          <span>Computational Drug Discovery · Healthcare AI</span>
-        </div>
-        <h1 class="display-lg hero-title">
-          Victoria <span class="text-gradient">Paterson</span>
-        </h1>
-        <p class="hero-subtitle">
-          Third-year CS & AI @ University of Edinburgh. Building AI for early drug development — 
-          QSAR adverse effect prediction, ODE tumour resistance simulation, and generative molecular design. 
-          DAAD RISE scholar with publication pending.
+  <header class="hero">
+    <p class="hero-eyebrow">CS & AI · University of Edinburgh · Healthcare AI & Drug Discovery</p>
+    <h1 class="hero-name">
+      <span class="line1">Victoria</span>
+      <span class="line2">Paterson</span>
+    </h1>
+    <div class="hero-bottom">
+      <div>
+        <p class="hero-desc">
+          Third-year CS & AI student at the University of Edinburgh. Portfolio spans the full early drug development pipeline: multi-label QSAR adverse effect prediction (ChEMBL, SIDER, Morgan fingerprints, SHAP), ODE-based tumour resistance simulation, and conditional VAE for inverse molecular generation. DAAD RISE scholar (publication pending). Passionate about building software that accelerates evidence generation and improves health outcomes.
         </p>
-        <div class="hero-stats">
-          <div class="stat"><span class="stat-value">DAAD RISE</span><span class="stat-label">Scholar 2025</span></div>
-          <div class="stat"><span class="stat-value">ChEMBL+SIDER</span><span class="stat-label">Drug Safety</span></div>
-          <div class="stat"><span class="stat-value">Publication</span><span class="stat-label">Under Review</span></div>
+        <div class="hero-pills">
+          <span class="hero-pill">Healthcare AI</span>
+          <span class="hero-pill">Cheminformatics</span>
+          <span class="hero-pill">QSAR</span>
+          <span class="hero-pill">ODE Modelling</span>
+          <span class="hero-pill">VAE</span>
+          <span class="hero-pill">Edinburgh, UK</span>
         </div>
-        <div class="btn-group" style="margin-top: 2rem;">
-          <a href="#projects" class="btn-primary">View Projects →</a>
-          <a href="https://github.com/vi-c-ky" target="_blank" class="btn-outline">GitHub</a>
-        </div>
-      </section>
-
-      <!-- Projects Section -->
-      <section id="projects" style="margin: 4rem 0;">
-        <div class="section-header reveal">
-          <h2 class="section-title">Research & Engineering</h2>
-          <span class="overline">Full pipeline: prediction → simulation → generation</span>
-        </div>
-
-        <div class="projects-grid">
-          <!-- QSAR Project -->
-          <div class="project-card reveal">
-            <span class="featured-badge">✦ Published-style project</span>
-            <div class="project-icon">🧬</div>
-            <h3 class="project-title">QSAR Drug Side Effect Predictor</h3>
-            <p class="project-desc">Multi-label adverse effect prediction system for early drug safety screening. Trained on ChEMBL + SIDER (15 AE labels) with Morgan fingerprints and RDKit descriptors. Atom-level SHAP interpretability.</p>
-            <div class="project-tech">
-              <span class="tech-tag">PyTorch</span>
-              <span class="tech-tag">RDKit</span>
-              <span class="tech-tag">SHAP</span>
-              <span class="tech-tag">scikit-learn</span>
-              <span class="tech-tag">Flask</span>
-            </div>
-            <div class="project-stats">Multi-label classification · Weighted loss · Flask + vanilla JS frontend</div>
-          </div>
-
-          <!-- TumorEvo -->
-          <div class="project-card reveal">
-            <div class="project-icon">📈</div>
-            <h3 class="project-title">TumorEvo: Resistance Dynamics</h3>
-            <p class="project-desc">Four-compartment ODE model (sensitive, resistant A/B, dual-resistant) simulating acquired resistance. RK4 numerical integration with clinical dosing schedules: continuous, pulsed, metronomic, escalating.</p>
-            <div class="project-tech">
-              <span class="tech-tag">NumPy</span>
-              <span class="tech-tag">SciPy</span>
-              <span class="tech-tag">Flask</span>
-              <span class="tech-tag">Chart.js</span>
-            </div>
-            <div class="project-stats">RK4 · Real-time flux analysis · Interactive parameter controls</div>
-          </div>
-
-          <!-- Conditional VAE -->
-          <div class="project-card reveal">
-            <div class="project-icon">⚛️</div>
-            <h3 class="project-title">Conditional VAE for Molecular Generation</h3>
-            <p class="project-desc">Inverse molecular design conditioned on SIDER side effect profiles. Extends QSAR predictor into generative direction — closed-loop property prediction + design.</p>
-            <div class="project-tech">
-              <span class="tech-tag">PyTorch</span>
-              <span class="tech-tag">RDKit</span>
-              <span class="tech-tag">VAE</span>
-              <span class="tech-tag">ChEMBL</span>
-            </div>
-            <div class="project-stats">In progress · Conditional generation · SMILES space</div>
-          </div>
-
-          <!-- Deepfake Detector -->
-          <div class="project-card reveal">
-            <div class="project-icon">🎭</div>
-            <h3 class="project-title">Deepfake Political Speech Detector</h3>
-            <p class="project-desc">Multimodal AI: XceptionNet/EfficientNet (visual) + Wav2Vec2 (audio) with late fusion meta-learner. Targets 96-98% combined accuracy.</p>
-            <div class="project-tech">
-              <span class="tech-tag">PyTorch</span>
-              <span class="tech-tag">Wav2Vec2</span>
-              <span class="tech-tag">XceptionNet</span>
-              <span class="tech-tag">OpenCV</span>
-            </div>
-            <div class="project-stats">89-98% visual · 93-98% audio · Fusion meta-learner</div>
-          </div>
-
-          <!-- ASL & Hate Comment -->
-          <div class="project-card reveal">
-            <div class="project-icon">🤟</div>
-            <h3 class="project-title">ASL Gesture Recognition</h3>
-            <p class="project-desc">Web-based sign language interpreter: Random Forest (static) + LSTM (dynamic) with MediaPipe 21-point landmarks. WebSocket streaming for real-time inference.</p>
-            <div class="project-tech">
-              <span class="tech-tag">MediaPipe</span>
-              <span class="tech-tag">LSTM</span>
-              <span class="tech-tag">WebSockets</span>
-              <span class="tech-tag">Flask</span>
-            </div>
-          </div>
-
-          <div class="project-card reveal">
-            <div class="project-icon">🛡️</div>
-            <h3 class="project-title">Instagram Hate Comment Detector</h3>
-            <p class="project-desc">Real-time toxic comment detection + Chrome extension for automatic blurring. 92% precision.</p>
-            <div class="project-tech">
-              <span class="tech-tag">TensorFlow</span>
-              <span class="tech-tag">Chrome Extensions API</span>
-              <span class="tech-tag">JavaScript</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Experience -->
-      <section id="experience" style="margin: 4rem 0;">
-        <div class="section-header reveal">
-          <h2 class="section-title">Experience</h2>
-          <span class="overline">Industry & Research</span>
-        </div>
-        <div class="timeline">
-          <div class="exp-item reveal">
-            <div><div class="exp-date">Summer 2025</div><div class="exp-org">RWTH Aachen University · DAAD RISE</div></div>
-            <div><h3 class="exp-title">AI Research Intern</h3><ul class="exp-desc"><li>Built AI-powered chatbot to parse complex international hydrogen policy documents</li><li>Developed algorithms to quantify inter-country policy coherence with visualization suite</li><li>Research findings currently under review for academic publication</li></ul><div class="exp-tags"><span class="tech-tag">NLP</span><span class="tech-tag">Transformers</span><span class="tech-tag">Policy Analysis</span></div></div>
-          </div>
-          <div class="exp-item reveal">
-            <div><div class="exp-date">2026</div><div class="exp-org">EDINA · UK National Mapping Service</div></div>
-            <div><h3 class="exp-title">AI Software Engineering Intern</h3><ul class="exp-desc"><li>LLM-powered conversational interface with semantic search over structured metadata</li><li>Built interactive data visualization dashboards and production web features</li><li>Developed Python automation for batch processing large-scale geospatial datasets</li></ul><div class="exp-tags"><span class="tech-tag">LLM</span><span class="tech-tag">Embeddings</span><span class="tech-tag">Flask</span><span class="tech-tag">React</span></div></div>
-          </div>
-          <div class="exp-item reveal">
-            <div><div class="exp-date">Present</div><div class="exp-org">University of Edinburgh</div></div>
-            <div><h3 class="exp-title">Lab Demonstrator (CV & NLP)</h3><ul class="exp-desc"><li>Lead weekly labs for Cognitive Science — computer vision (Hopfield networks, vision systems) and NLP</li><li>Guide students through neural network implementations; consistently receive excellent feedback</li></ul><div class="exp-tags"><span class="tech-tag">Teaching</span><span class="tech-tag">Computer Vision</span><span class="tech-tag">NLP</span></div></div>
-          </div>
-          <div class="exp-item reveal">
-            <div><div class="exp-date">2024–Present</div><div class="exp-org">Scottish Policy Forum · Labour Party</div></div>
-            <div><h3 class="exp-title">Technology Policy Advisor</h3><ul class="exp-desc"><li>Bring technical AI perspective to policy discussions; collaborate with senior policymakers to draft position papers on AI and technology innovation</li></ul><div class="exp-tags"><span class="tech-tag">Policy</span><span class="tech-tag">AI Governance</span></div></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Skills -->
-      <section id="skills" style="margin: 4rem 0;">
-        <div class="section-header reveal">
-          <h2 class="section-title">Technical Expertise</h2>
-          <span class="overline">Healthcare AI · Full Stack</span>
-        </div>
-        <div class="skills-grid">
-          <div class="skill-category"><div class="skill-cat-title">Cheminformatics & BioAI</div><div class="skill-items"><span class="skill-item">RDKit</span><span class="skill-item">Morgan Fingerprints</span><span class="skill-item">QSAR</span><span class="skill-item">ChEMBL/SIDER</span><span class="skill-item">ODE Modelling</span><span class="skill-item">SHAP</span></div></div>
-          <div class="skill-category"><div class="skill-cat-title">Deep Learning</div><div class="skill-items"><span class="skill-item">PyTorch</span><span class="skill-item">TensorFlow</span><span class="skill-item">Transformers</span><span class="skill-item">VAEs</span><span class="skill-item">CNNs/LSTMs</span></div></div>
-          <div class="skill-category"><div class="skill-cat-title">NLP & CV</div><div class="skill-items"><span class="skill-item">Wav2Vec2</span><span class="skill-item">spaCy/NLTK</span><span class="skill-item">OpenCV</span><span class="skill-item">MediaPipe</span><span class="skill-item">XceptionNet</span><span class="skill-item">EfficientNet</span></div></div>
-          <div class="skill-category"><div class="skill-cat-title">Full Stack & DevOps</div><div class="skill-items"><span class="skill-item">Flask/Node.js</span><span class="skill-item">React</span><span class="skill-item">MongoDB/PostgreSQL</span><span class="skill-item">Docker</span><span class="skill-item">AWS</span><span class="skill-item">WebSockets</span></div></div>
-          <div class="skill-category"><div class="skill-cat-title">Languages</div><div class="skill-items"><span class="skill-item">Python</span><span class="skill-item">JavaScript</span><span class="skill-item">Java</span><span class="skill-item">TypeScript</span><span class="skill-item">C#</span><span class="skill-item">Haskell</span></div></div>
-          <div class="skill-category"><div class="skill-cat-title">Biomedical Curriculum</div><div class="skill-items"><span class="skill-item">Biological APIs</span><span class="skill-item">Sequence Analysis</span><span class="skill-item">Multi-omics</span><span class="skill-item">Network Analysis</span><span class="skill-item">Biomedical NLP</span></div></div>
-        </div>
-      </section>
-
-      <!-- About Strip -->
-      <div id="about" class="about-strip reveal">
-        <div class="about-grid">
-          <div class="about-highlight">Building AI that <span class="text-gradient">accelerates evidence generation</span> and improves health outcomes</div>
-          <div class="about-text">
-            <p>I'm a third-year CS & AI student at the <strong>University of Edinburgh</strong> with a specialized portfolio in <strong>healthcare AI and computational drug discovery</strong>. My projects span the full early drug development pipeline: from QSAR adverse effect prediction and ODE-based tumour resistance simulation to conditional VAE for inverse molecular design.</p>
-            <p>I complement this with self-directed biomedical informatics (biological APIs, multi-omics, biomedical NLP) and production software engineering experience. DAAD RISE scholar at RWTH Aachen (publication pending).</p>
-            <p>I speak English, Norwegian, and German. Looking for Summer 2026 opportunities in <strong>AI/ML for healthcare, drug discovery, or biomedical AI research</strong>.</p>
-            <div style="margin-top: 1rem;"><a href="#contact" class="btn-primary" style="background: var(--accent-secondary);">Get in touch →</a></div>
-          </div>
-        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="https://github.com/vi-c-ky" target="_blank" rel="noopener" class="btn-ghost">GitHub</a>
       </div>
     </div>
+  </header>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-      <div class="container">
-        <span class="overline">Connect</span>
-        <h2 style="font-family: var(--font-display); font-size: 2rem; margin: 1rem 0;">Let's accelerate discovery together</h2>
-        <a href="mailto:victoriaflora2005@gmail.com" class="contact-email">victoriaflora2005@gmail.com</a>
-        <div style="margin-top: 1rem;"><a href="https://github.com/vi-c-ky" target="_blank" style="color: var(--text-muted); text-decoration: none;">github.com/vi-c-ky</a></div>
+  <section class="section" id="projects">
+    <div class="section-header reveal">
+      <h2 class="section-title">Projects</h2>
+      <span class="section-meta">Drug discovery · AI for health</span>
+    </div>
+
+    <div class="projects-grid">
+
+      <article class="project-card featured reveal">
+        <div>
+          <div class="project-number">01 — Featured</div>
+          <h3 class="project-name">QSAR Drug<br>Side Effect Predictor</h3>
+        </div>
+        <div>
+          <p class="project-desc">
+            End-to-end drug adverse effect prediction system for early-stage drug safety screening. Multi-label classifier trained on ChEMBL + SIDER across 15 adverse effect labels. Molecular featurisation using Morgan fingerprints (r2-r5) and 14 RDKit physicochemical descriptors. Weighted loss for class imbalance; atom-level SHAP interpretability for clinical explainability. Full-stack deployment with Flask REST API and JavaScript frontend.
+            <br><br>
+            <span class="project-stat">15 AE labels · SHAP interpretability · Flask + JS</span>
+          </p>
+          <div class="project-tags">
+            <span class="tag">PyTorch</span>
+            <span class="tag">RDKit</span>
+            <span class="tag">scikit-learn</span>
+            <span class="tag">SHAP</span>
+            <span class="tag">Flask</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/vi-c-ky" target="_blank" rel="noopener" class="project-link">GitHub <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-number">02</div>
+        <h3 class="project-name" style="margin-bottom:1.5rem;">TumorEvo: Resistance Dynamics</h3>
+        <p class="project-desc">
+          Four-compartment ODE model (sensitive, resistance A, resistance B, dual-resistant) modelling acquired resistance dynamics relevant to clinical treatment planning. RK4 numerical integration; four clinical dosing schedules (continuous, pulsed, metronomic, escalating); real-time growth/death flux analysis and resistance dynamics visualisation. Full-stack web application with interactive parameter controls.
+        </p>
+        <div class="project-tags">
+          <span class="tag">NumPy</span>
+          <span class="tag">SciPy</span>
+          <span class="tag">Flask</span>
+          <span class="tag">Chart.js</span>
+          <span class="tag">ODE</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/vi-c-ky" target="_blank" rel="noopener" class="project-link">GitHub <span class="arrow">↗</span></a>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-number">03</div>
+        <h3 class="project-name" style="margin-bottom:1.5rem;">Conditional VAE Molecular Generation</h3>
+        <p class="project-desc">
+          Conditional VAE trained on ChEMBL and conditioned on SIDER side effect profiles, enabling inverse molecular design: generating candidate molecules with desired adverse effect signatures. Extends the QSAR predictor into a generative direction, closing the loop between property prediction and molecular design. In progress.
+        </p>
+        <div class="project-tags">
+          <span class="tag">PyTorch</span>
+          <span class="tag">RDKit</span>
+          <span class="tag">VAE</span>
+          <span class="tag">ChEMBL</span>
+          <span class="tag">SIDER</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/vi-c-ky" target="_blank" rel="noopener" class="project-link">GitHub <span class="arrow">↗</span></a>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-number">04</div>
+        <h3 class="project-name" style="margin-bottom:1.5rem;">Deepfake Political Speech Detector</h3>
+        <p class="project-desc">
+          Multimodal AI system detecting manipulated politician videos. XceptionNet/EfficientNet for visual artefact detection (89-98% accuracy), Wav2Vec2 for audio deepfake detection (93-98% accuracy). Late fusion meta-learner combining modalities; target 96-98% combined accuracy.
+        </p>
+        <div class="project-tags">
+          <span class="tag">PyTorch</span>
+          <span class="tag">Transformers</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">Wav2Vec2</span>
+          <span class="tag">XceptionNet</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/vi-c-ky" target="_blank" rel="noopener" class="project-link">GitHub <span class="arrow">↗</span></a>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-number">05</div>
+        <h3 class="project-name" style="margin-bottom:1.5rem;">ASL Gesture Recognition</h3>
+        <p class="project-desc">
+          Web-based ASL gesture recognition; ensemble of Random Forest (static) and LSTM (dynamic); 21-point landmark feature engineering with full WebSocket streaming.
+        </p>
+        <div class="project-tags">
+          <span class="tag">MediaPipe</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">Flask</span>
+          <span class="tag">WebSockets</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/vi-c-ky" target="_blank" rel="noopener" class="project-link">GitHub <span class="arrow">↗</span></a>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-number">06</div>
+        <h3 class="project-name" style="margin-bottom:1.5rem;">Instagram Hate Comment Detector</h3>
+        <p class="project-desc">
+          Real-time hate speech detection model + Chrome extension for automatic comment blurring; 92% precision on test dataset.
+        </p>
+        <div class="project-tags">
+          <span class="tag">TensorFlow</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Chrome Extensions API</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/vi-c-ky" target="_blank" rel="noopener" class="project-link">GitHub <span class="arrow">↗</span></a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="section-header reveal">
+      <h2 class="section-title">Experience</h2>
+      <span class="section-meta">Research & industry</span>
+    </div>
+
+    <div class="experience-list">
+
+      <div class="exp-row reveal">
+        <div>
+          <span class="exp-date">Summer 2025</span>
+          <span class="exp-company">RWTH Aachen University<br>DAAD RISE Scholar</span>
+        </div>
+        <div>
+          <h3 class="exp-title">AI Research Intern</h3>
+          <ul class="exp-bullets">
+            <li>Built AI-powered chatbot to parse and analyse complex policy documents across multiple countries</li>
+            <li>Developed algorithms to quantify inter-country policy coherence; created visualisation suite for policy direction analysis</li>
+            <li>Research findings currently undergoing publication in academic journal</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">NLP</span>
+            <span class="tag">Transformers</span>
+            <span class="tag">Python</span>
+            <span class="tag">Research</span>
+          </div>
+        </div>
       </div>
-    </section>
 
-    <footer>
-      <div class="container">© 2025 Victoria Paterson · CS & AI, University of Edinburgh</div>
-    </footer>
-  </main>
+      <div class="exp-row reveal">
+        <div>
+          <span class="exp-date">2026</span>
+          <span class="exp-company">EDINA · UK National Mapping Service<br>University of Edinburgh</span>
+        </div>
+        <div>
+          <h3 class="exp-title">AI Software Engineering Intern</h3>
+          <ul class="exp-bullets">
+            <li>Full-stack LLM integration: Designed and built an LLM-powered conversational interface into a production web platform; implemented semantic search over structured metadata using embedding generation and vector retrieval</li>
+            <li>Web application development: Extended a production platform with new frontend features and backend API endpoints; built interactive data visualisation dashboards for stakeholder use</li>
+            <li>Data pipeline engineering: Developed Python automation scripts for batch processing and format conversion of large-scale structured datasets</li>
+            <li>GeoAI prototyping: Evaluated and deployed pre-trained LLMs (Ollama, OpenAI API); benchmarked model performance against domain-specific retrieval requirements</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">LLM</span>
+            <span class="tag">Embeddings</span>
+            <span class="tag">Flask</span>
+            <span class="tag">React</span>
+            <span class="tag">GeoAI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-row reveal">
+        <div>
+          <span class="exp-date">Present</span>
+          <span class="exp-company">University of Edinburgh</span>
+        </div>
+        <div>
+          <h3 class="exp-title">Lab Demonstrator</h3>
+          <ul class="exp-bullets">
+            <li>Lead weekly lab sessions for Cognitive Science course; specialise in computer vision and NLP</li>
+            <li>Guide students through implementation of neural network architectures; consistently receive excellent feedback</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Computer Vision</span>
+            <span class="tag">NLP</span>
+            <span class="tag">Teaching</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-row reveal">
+        <div>
+          <span class="exp-date">2024 — Present</span>
+          <span class="exp-company">Scottish Policy Forum · Labour Party</span>
+        </div>
+        <div>
+          <h3 class="exp-title">Technology Policy Advisor</h3>
+          <ul class="exp-bullets">
+            <li>Bring technical perspective to AI and technology policy discussions; collaborate with senior policymakers to draft position papers</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Policy</span>
+            <span class="tag">AI Governance</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="about-strip" id="about">
+    <div class="about-heading reveal">
+      <span style="display:block;">About</span>
+      <span class="outline" style="display:block;">Me.</span>
+    </div>
+    <div class="about-body reveal">
+      <p>
+        I'm a <strong>third-year Computer Science and Artificial Intelligence student at the University of Edinburgh</strong> with a focused portfolio in healthcare AI and computational drug discovery. My projects span the full early drug development pipeline: multilabel QSAR adverse effect prediction, ODE-based tumour resistance simulation, and conditional VAE for inverse molecular generation.
+      </p>
+      <p>
+        I complement this with a self-directed biomedical informatics curriculum covering biological APIs, sequence analysis, multi-omics, and biomedical NLP. I'm a <strong>DAAD RISE research scholar</strong> (publication pending) and have production full-stack software deployment experience.
+      </p>
+      <p>
+        I speak English, Norwegian, and German. Looking for opportunities in AI/ML for healthcare, drug discovery, or biomedical AI research.
+      </p>
+      <div style="margin-top:0.5rem;">
+        <a href="#contact" class="btn-primary" style="display:inline-block;">Get in touch</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" id="skills">
+    <div class="section-header reveal">
+      <h2 class="section-title">Skills</h2>
+      <span class="section-meta">Tech stack</span>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-item"><span class="skill-cat">Cheminformatics</span><span class="skill-name">RDKit, Morgan fingerprints, QSAR</span></div>
+      <div class="skill-item"><span class="skill-cat">Healthcare AI</span><span class="skill-name">ChEMBL, SIDER, SHAP, ODE</span></div>
+      <div class="skill-item"><span class="skill-cat">Deep Learning</span><span class="skill-name">PyTorch, TensorFlow, VAEs</span></div>
+      <div class="skill-item"><span class="skill-cat">NLP</span><span class="skill-name">Transformers, spaCy, NLTK</span></div>
+      <div class="skill-item"><span class="skill-cat">Computer Vision</span><span class="skill-name">OpenCV, MediaPipe, XceptionNet</span></div>
+      <div class="skill-item"><span class="skill-cat">Backend</span><span class="skill-name">Flask, Node.js, REST APIs, WebSockets</span></div>
+      <div class="skill-item"><span class="skill-cat">Frontend</span><span class="skill-name">React, JavaScript, HTML/CSS</span></div>
+      <div class="skill-item"><span class="skill-cat">Databases</span><span class="skill-name">MongoDB, PostgreSQL</span></div>
+      <div class="skill-item"><span class="skill-cat">DevOps</span><span class="skill-name">Git, Docker, Linux, CI/CD, AWS</span></div>
+      <div class="skill-item"><span class="skill-cat">Languages</span><span class="skill-name">Python, JavaScript, Java, TypeScript, C#, Haskell</span></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact-eyebrow reveal">Get in touch</div>
+    <h2 class="contact-heading reveal">
+      <span style="display:block;">Let's work</span>
+      <span class="outline" style="display:block;">together.</span>
+    </h2>
+    <a href="mailto:victoriaflora2005@gmail.com" class="contact-email reveal">victoriaflora2005@gmail.com</a>
+  </section>
+
+  <footer>
+    <span>© 2025 Victoria Paterson</span>
+    <div class="footer-links">
+      <a href="https://github.com/vi-c-ky" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:victoriaflora2005@gmail.com">Email</a>
+    </div>
+  </footer>
 
   <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+      { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i % 4) * 0.08 + 's';
+      observer.observe(el);
+    });
   </script>
 </body>
 </html>
