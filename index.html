@@ -1,34 +1,246 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/v-icon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Victoria Paterson</title>
-    <script type="module" crossorigin src="/assets/index-DP9QdxT0.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CQekqbU2.css">
-  </head>
-  <body>
-    
-    <div id="app">
-      <div id="header">
-        <div id="contact">Contact Me</div>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Victoria Paterson — AI Engineer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#050507;
+  --card:#0c0f14;
+  --border:#1a1f2a;
+  --accent:#c8f500;
+  --text:#eaeaea;
+  --muted:#7a7f88;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+.container{max-width:1200px;margin:auto;padding:2rem}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:4rem}
+nav a{color:var(--muted);text-decoration:none;margin-left:1.5rem;font-size:.85rem}
+nav a:hover{color:var(--text)}
+
+.logo{font-family:'Bebas Neue';font-size:1.6rem;color:var(--accent)}
+
+/* HERO */
+.hero h1{
+  font-family:'Bebas Neue';
+  font-size:clamp(4rem,10vw,9rem);
+  line-height:.9;
+}
+
+.hero p{
+  margin-top:1.5rem;
+  max-width:600px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.badges{margin-top:1rem}
+.badge{
+  display:inline-block;
+  border:1px solid var(--border);
+  padding:.3rem .6rem;
+  margin:.2rem;
+  font-size:.7rem;
+  color:var(--muted);
+}
+
+/* BUTTON */
+.btn{
+  display:inline-block;
+  margin-top:2rem;
+  padding:.8rem 1.5rem;
+  background:var(--accent);
+  color:#000;
+  text-decoration:none;
+  font-size:.75rem;
+}
+
+/* SECTION */
+.section{margin-top:6rem}
+.section h2{
+  font-family:'Bebas Neue';
+  font-size:3rem;
+  margin-bottom:2rem;
+}
+
+/* PROJECTS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.5rem;
+}
+
+.card{
+  background:var(--card);
+  padding:1.5rem;
+  border:1px solid var(--border);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  border-color:var(--accent);
+}
+
+.card h3{
+  font-size:1.4rem;
+  margin-bottom:.8rem;
+}
+
+.card p{
+  font-size:.85rem;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.metrics{
+  margin-top:1rem;
+  font-size:.75rem;
+  color:var(--accent);
+}
+
+.links a{
+  display:inline-block;
+  margin-right:1rem;
+  margin-top:1rem;
+  font-size:.75rem;
+  color:var(--muted);
+}
+
+.links a:hover{color:var(--accent)}
+
+/* EXPERIENCE */
+.exp{
+  border-top:1px solid var(--border);
+  padding:1.5rem 0;
+}
+
+.exp h3{margin-bottom:.5rem}
+.exp p{font-size:.85rem;color:var(--muted)}
+
+/* FOOTER */
+footer{
+  margin-top:6rem;
+  padding-top:2rem;
+  border-top:1px solid var(--border);
+  font-size:.7rem;
+  color:var(--muted);
+}
+
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<nav>
+  <div class="logo">VP</div>
+  <div>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Victoria<br>Paterson</h1>
+  <p>
+    Building real-world AI systems — from multimodal deepfake detection to geospatial LLM pipelines.
+  </p>
+
+  <div class="badges">
+    <span class="badge">NLP</span>
+    <span class="badge">Computer Vision</span>
+    <span class="badge">GeoAI</span>
+  </div>
+
+  <a class="btn" href="#projects">View Work</a>
+</section>
+
+<section class="section" id="projects">
+  <h2>Projects</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Deepfake Detector</h3>
+      <p>
+        Multimodal pipeline combining CNN-based visual detection and Wav2Vec2 audio models.
+      </p>
+      <div class="metrics">96–98% accuracy · &lt;120ms inference</div>
+      <div class="links">
+        <a href="#">GitHub ↗</a>
+        <a href="#">Demo ↗</a>
       </div>
-      <div >
-        <img id="titleImg" src="/assets/title-logo-CVechS4U.png">
-      </div>
-      <div class="search-box">
-        <img id="searchIcon" src="/search.svg">
-        <p id="search-text"></p>
-        <a href="https://github.com/vi-c-ky" ><img id="gitIcon" src="/GitHub.svg"></a>
-      </div>
-        <div class="inputButton">
-          <a href="searches-about.html">
-          <input type="submit" value="Google Search">
-          </a>
-          <input type="submit" value="I'm Feeling lucky">
-        </div>
-     
     </div>
-  </body>
+
+    <div class="card">
+      <h3>Sign Language Interpreter</h3>
+      <p>
+        Real-time ASL recognition using MediaPipe and LSTM models for dynamic gestures.
+      </p>
+      <div class="metrics">Real-time · Browser-based</div>
+      <div class="links">
+        <a href="#">GitHub ↗</a>
+        <a href="#">Demo ↗</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Hydrogen Policy AI</h3>
+      <p>
+        NLP system analysing international energy policy and measuring cross-country alignment.
+      </p>
+      <div class="metrics">Research under review</div>
+      <div class="links">
+        <a href="#">GitHub ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="experience">
+  <h2>Experience</h2>
+
+  <div class="exp">
+    <h3>AI Intern — EDINA</h3>
+    <p>
+      Built LLM-powered geospatial search over national datasets and interactive mapping tools.
+    </p>
+  </div>
+
+  <div class="exp">
+    <h3>AI Research Intern — RWTH Aachen</h3>
+    <p>
+      Developed NLP systems for international hydrogen policy analysis.
+    </p>
+  </div>
+
+</section>
+
+<section class="section" id="contact">
+  <h2>Contact</h2>
+  <p style="color:var(--muted)">victoriaflora2005@gmail.com</p>
+</section>
+
+<footer>
+  © 2026 Victoria Paterson
+</footer>
+
+</div>
+</body>
 </html>
