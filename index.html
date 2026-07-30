@@ -308,6 +308,17 @@
 
     .project-link:hover { color: var(--accent); }
     .project-link .arrow { display: inline-block; transition: transform 0.2s; }
+
+    .pub-status {
+      display: inline-block;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
     .project-link:hover .arrow { transform: translate(2px, -2px); }
 
     .about-strip {
@@ -544,6 +555,7 @@
   <nav>
     <div class="nav-logo">VP</div>
     <ul class="nav-links">
+      <li><a href="#publications">Publications</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#about">About</a></li>
@@ -580,6 +592,57 @@
     </div>
   </header>
 
+  <section class="section" id="publications">
+    <div class="section-header reveal">
+      <h2 class="section-title">Publications</h2>
+      <span class="section-meta">Sole-first-author manuscripts</span>
+    </div>
+
+    <div class="projects-grid">
+
+      <article class="project-card featured reveal">
+        <div>
+          <div class="pub-status">Under review · PLOS Genetics</div>
+          <h3 class="project-name">Genetic Evidence Predicts Drug Target Clinical Success</h3>
+        </div>
+        <div>
+          <p class="project-desc">
+            Machine learning analysis of 26,278 drug target-disease pairs, quantifying how strongly genetic evidence predicts successful clinical progression. XGBoost classifier with SHAP interpretability decomposes which types of genetic evidence matter most and for which disease areas.
+            <br><br>
+            <span class="project-stat">OR = 3.25 (95% CI 2.79–3.79) · 26,278 pairs · Open Targets + ChEMBL</span>
+          </p>
+          <div class="project-tags">
+            <span class="tag">XGBoost</span>
+            <span class="tag">SHAP</span>
+            <span class="tag">Open Targets</span>
+            <span class="tag">ChEMBL</span>
+          </div>
+          <div class="project-links">
+            <a href="https://arxiv.org/abs/2606.14823" target="_blank" rel="noopener" class="project-link">arXiv <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="pub-status" style="margin-bottom:1.2rem;">Submitted · npj Precision Oncology</div>
+        <h3 class="project-name" style="margin-bottom:1.5rem;">Multi-Omics Factor Analysis Identifies a Pan-Cancer Immune Exclusion Programme with Tissue-Specific Mechanistic Drivers</h3>
+        <p class="project-desc">
+          Unsupervised MOFA2 analysis across 11,060 TCGA samples spanning 31 cancer types identifies a conserved CEACAM5/B-cell exclusion programme, independently prognostic in the discovery cohort. Dissociated Cox modelling separates tissue-specific mechanistic drivers; external validation in an independent cohort (METABRIC) reported honestly, including a negative prognostic replication result.
+        </p>
+        <div class="project-tags">
+          <span class="tag">MOFA2</span>
+          <span class="tag">Multi-omics</span>
+          <span class="tag">Survival Analysis</span>
+          <span class="tag">TCGA</span>
+        </div>
+        <div class="project-links">
+          <span class="project-link" style="cursor:default;">arXiv (pending moderation)</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
   <section class="section" id="projects">
     <div class="section-header reveal">
       <h2 class="section-title">Projects</h2>
@@ -607,7 +670,7 @@
             <span class="tag">Flask</span>
           </div>
           <div class="project-links">
-            <a href="https://github.com/vi-c-ky" target="_blank" rel="noopener" class="project-link">GitHub <span class="arrow">↗</span></a>
+            <a href="https://github.com/vi-c-ky/Side-Effect-Detector" target="_blank" rel="noopener" class="project-link">GitHub <span class="arrow">↗</span></a>
           </div>
         </div>
       </article>
@@ -626,22 +689,38 @@
           <span class="tag">ODE</span>
         </div>
         <div class="project-links">
-          <a href="https://github.com/vi-c-ky" target="_blank" rel="noopener" class="project-link">GitHub <span class="arrow">↗</span></a>
+          <a href="https://github.com/vi-c-ky/TumorEvo" target="_blank" rel="noopener" class="project-link">GitHub <span class="arrow">↗</span></a>
         </div>
       </article>
 
       <article class="project-card reveal">
         <div class="project-number">03</div>
-        <h3 class="project-name" style="margin-bottom:1.5rem;">Conditional VAE Molecular Generation</h3>
+        <h3 class="project-name" style="margin-bottom:1.5rem;">SideGen: Conditional Molecular Generation</h3>
         <p class="project-desc">
-          Conditional VAE trained on ChEMBL and conditioned on SIDER side effect profiles, enabling inverse molecular design: generating candidate molecules with desired adverse effect signatures. Extends the QSAR predictor into a generative direction, closing the loop between property prediction and molecular design. In progress.
+          Conditional GNN-VAE for inverse molecular design: generates candidate molecules conditioned on a target side-effect profile, closing the loop with the QSAR predictor (structure→effect and effect→structure). Systematic conditioning validation across 8 side-effect classes. Dataset expansion via DrugCentral in progress to improve generation quality.
         </p>
         <div class="project-tags">
           <span class="tag">PyTorch</span>
-          <span class="tag">RDKit</span>
+          <span class="tag">GNN</span>
           <span class="tag">VAE</span>
-          <span class="tag">ChEMBL</span>
-          <span class="tag">SIDER</span>
+          <span class="tag">RDKit</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/vi-c-ky/SideGen" target="_blank" rel="noopener" class="project-link">GitHub <span class="arrow">↗</span></a>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-number">04</div>
+        <h3 class="project-name" style="margin-bottom:1.5rem;">TrialSight</h3>
+        <p class="project-desc">
+          Clinical trial recruitment risk predictor trained on 80,000+ ClinicalTrials.gov records. XGBoost classifier with SHAP interpretability surfaces which trial design factors (eligibility complexity, site count, condition rarity, sponsor type) most increase recruitment risk. Deployed as an interactive dashboard for pre-launch risk assessment.
+        </p>
+        <div class="project-tags">
+          <span class="tag">XGBoost</span>
+          <span class="tag">SHAP</span>
+          <span class="tag">Flask</span>
+          <span class="tag">ClinicalTrials.gov</span>
         </div>
         <div class="project-links">
           <a href="https://github.com/vi-c-ky" target="_blank" rel="noopener" class="project-link">GitHub <span class="arrow">↗</span></a>
@@ -649,7 +728,36 @@
       </article>
 
       <article class="project-card reveal">
-        <div class="project-number">04</div>
+        <div class="project-number">05</div>
+        <h3 class="project-name" style="margin-bottom:1.5rem;">omicsync</h3>
+        <p class="project-desc">
+          Python library for multi-omics data harmonisation — solving recurring ID/ontology mapping, sample intersection, and missing-data problems shared across the projects above. Installable, tested, published on PyPI.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">PyPI</span>
+          <span class="tag">Multi-omics</span>
+          <span class="tag">CI/CD</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/vi-c-ky/omicsync" target="_blank" rel="noopener" class="project-link">GitHub <span class="arrow">↗</span></a>
+          <a href="https://pypi.org/project/omicsync" target="_blank" rel="noopener" class="project-link">PyPI <span class="arrow">↗</span></a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section" id="other-work">
+    <div class="section-header reveal">
+      <h2 class="section-title">Other Work</h2>
+      <span class="section-meta">General ML & software engineering</span>
+    </div>
+
+    <div class="projects-grid">
+
+      <article class="project-card reveal">
+        <div class="project-number">06</div>
         <h3 class="project-name" style="margin-bottom:1.5rem;">Deepfake Political Speech Detector</h3>
         <p class="project-desc">
           Multimodal AI system detecting manipulated politician videos. XceptionNet/EfficientNet for visual artefact detection (89-98% accuracy), Wav2Vec2 for audio deepfake detection (93-98% accuracy). Late fusion meta-learner combining modalities; target 96-98% combined accuracy.
@@ -667,7 +775,7 @@
       </article>
 
       <article class="project-card reveal">
-        <div class="project-number">05</div>
+        <div class="project-number">07</div>
         <h3 class="project-name" style="margin-bottom:1.5rem;">ASL Gesture Recognition</h3>
         <p class="project-desc">
           Web-based ASL gesture recognition; ensemble of Random Forest (static) and LSTM (dynamic); 21-point landmark feature engineering with full WebSocket streaming.
@@ -685,7 +793,7 @@
       </article>
 
       <article class="project-card reveal">
-        <div class="project-number">06</div>
+        <div class="project-number">08</div>
         <h3 class="project-name" style="margin-bottom:1.5rem;">Instagram Hate Comment Detector</h3>
         <p class="project-desc">
           Real-time hate speech detection model + Chrome extension for automatic comment blurring; 92% precision on test dataset.
@@ -713,27 +821,6 @@
 
       <div class="exp-row reveal">
         <div>
-          <span class="exp-date">Summer 2025</span>
-          <span class="exp-company">RWTH Aachen University<br>DAAD RISE Scholar</span>
-        </div>
-        <div>
-          <h3 class="exp-title">AI Research Intern</h3>
-          <ul class="exp-bullets">
-            <li>Built AI-powered chatbot to parse and analyse complex policy documents across multiple countries</li>
-            <li>Developed algorithms to quantify inter-country policy coherence; created visualisation suite for policy direction analysis</li>
-            <li>Research findings currently undergoing publication in academic journal</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="tag">NLP</span>
-            <span class="tag">Transformers</span>
-            <span class="tag">Python</span>
-            <span class="tag">Research</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="exp-row reveal">
-        <div>
           <span class="exp-date">2026</span>
           <span class="exp-company">EDINA · UK National Mapping Service<br>University of Edinburgh</span>
         </div>
@@ -751,6 +838,27 @@
             <span class="tag">Flask</span>
             <span class="tag">React</span>
             <span class="tag">GeoAI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-row reveal">
+        <div>
+          <span class="exp-date">Summer 2025</span>
+          <span class="exp-company">RWTH Aachen University<br>DAAD RISE Scholar</span>
+        </div>
+        <div>
+          <h3 class="exp-title">AI Research Intern</h3>
+          <ul class="exp-bullets">
+            <li>Built AI-powered chatbot to parse and analyse complex policy documents across multiple countries</li>
+            <li>Developed algorithms to quantify inter-country policy coherence; created visualisation suite for policy direction analysis</li>
+            <li>Research findings currently undergoing publication in academic journal</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">NLP</span>
+            <span class="tag">Transformers</span>
+            <span class="tag">Python</span>
+            <span class="tag">Research</span>
           </div>
         </div>
       </div>
@@ -804,7 +912,7 @@
         I'm a <strong>third-year Computer Science and Artificial Intelligence student at the University of Edinburgh</strong> with a focused portfolio in healthcare AI and computational drug discovery. My projects span the full early drug development pipeline: multilabel QSAR adverse effect prediction, ODE-based tumour resistance simulation, and conditional VAE for inverse molecular generation.
       </p>
       <p>
-        I complement this with a self-directed biomedical informatics curriculum covering biological APIs, sequence analysis, multi-omics, and biomedical NLP. I'm a <strong>DAAD RISE research scholar</strong> (publication pending) and have production full-stack software deployment experience.
+        I complement this with a self-directed biomedical informatics curriculum covering biological APIs, sequence analysis, multi-omics, and biomedical NLP. I have two sole-first-author manuscripts currently in peer review (PLOS Genetics; npj Precision Oncology), am a <strong>DAAD RISE research scholar</strong>, and have production full-stack software deployment experience.
       </p>
       <p>
         I speak English, Norwegian, and German. Looking for opportunities in AI/ML for healthcare, drug discovery, or biomedical AI research.
@@ -845,7 +953,7 @@
   </section>
 
   <footer>
-    <span>© 2025 Victoria Paterson</span>
+    <span>© 2026 Victoria Paterson</span>
     <div class="footer-links">
       <a href="https://github.com/vi-c-ky" target="_blank" rel="noopener">GitHub</a>
       <a href="mailto:victoriaflora2005@gmail.com">Email</a>
