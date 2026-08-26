@@ -1,0 +1,86 @@
+:root {
+  --navy-950: #05090f;
+  --navy-900: #0a121c;
+  --navy-800: #101c2b;
+  --navy-700: #182a3d;
+  --teal-300: #8ff0dd;
+  --teal-400: #4fd8c4;
+  --teal-500: #2bb8a6;
+  --ivory-100: #eef3f1;
+  --ivory-200: #d7e0dd;
+  --slate-400: #7d93a0;
+  --slate-500: #5b7280;
+
+  --font-display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Menlo, monospace;
+
+  --max-width: 1180px;
+  --edge: clamp(1.5rem, 5vw, 4rem);
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--navy-950);
+  color: var(--ivory-100);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: var(--teal-400);
+  color: var(--navy-950);
+}
+
+:focus-visible {
+  outline: 2px solid var(--teal-400);
+  outline-offset: 3px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal-400);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 1.4em;
+  height: 1px;
+  background: var(--teal-400);
+}
